@@ -15,8 +15,23 @@ namespace NagyAbel
                 Game game = new Game();
                 game.ChooseDifficulty();
                 game.Setup();
-                game.DrawState(0);
-                game.TakeInput();
+
+                while (game.state == GameState.Playing)
+                {
+                    game.DrawState();
+                    game.TakeInput();
+                    game.CheckForEnd();
+                }
+
+                game.DrawState();
+                if (game.state == GameState.Win)
+                {
+                    Writer.Writeln("Congratulations, You Won!");
+                }
+                else
+                {
+                    Writer.Writeln("Ha,ha  maybe next time!");
+                }
 
             }
 

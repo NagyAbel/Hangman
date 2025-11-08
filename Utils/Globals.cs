@@ -1,6 +1,5 @@
 using System;
 using System.Net;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 
 namespace NagyAbel.Utils
@@ -11,7 +10,8 @@ namespace NagyAbel.Utils
         public const int fast = 40;
         public const int slow = 100;
 
-
+        public const int max_lives = 6;
+        public const char EmptyLetter = '*';
         public static int lettersToReveal(int length)
         {
             if (length <= 3)

@@ -17,7 +17,7 @@ namespace NagyAbel.Utils
             string path = Path.Combine("GameData", "words.json");
             if (!File.Exists(path))
             {
-                Writer.Writeln("[  ⚠️  ] Word Data file is missing!", Globals.fast, true);
+                Writer.Writeln("[ERROR] Word Data file is missing!", Globals.fast, true);
                 Environment.Exit(-1);
             }
 
@@ -67,7 +67,7 @@ namespace NagyAbel.Utils
             string path = Path.Combine("GameData", "figure.json");
             if (!File.Exists(path))
             {
-                Writer.Writeln("[  ⚠️  ] Figure file is missing!", Globals.fast, true);
+                Writer.Writeln("[ERROR] Figure file is missing!", Globals.fast, true);
                 Environment.Exit(-1);
             }
 
@@ -99,19 +99,20 @@ namespace NagyAbel.Utils
 
         }
 
-        public static string[] GetFigure(int state)
+        public static string[] GetFigure(int current_lives)
         {
+            int index = Globals.max_lives - current_lives;
             if (figure_data.Count == 0) LoadFigures();
 
-            if (!figure_data.ContainsKey(state)){
-                Writer.Writeln("[error] Sate not found, check the figure file!", 0, true);
+            if (!figure_data.ContainsKey(index)){
+                Writer.Writeln("[ERROR] Sate not found, check the figure file!", 0, true);
                 Environment.Exit(-1);
             }
-            if (figure_data[state].Length == 0){
-                Writer.Writeln("[error] Sate empty, check the figure file!", 0, true);
+            if (figure_data[index].Length == 0){
+                Writer.Writeln("[ERROR] Sate empty, check the figure file!", 0, true);
                 Environment.Exit(-1);
             }
-            return figure_data[state];
+            return figure_data[index];
         }
     }
 }
