@@ -52,15 +52,6 @@ namespace NagyAbel.Utils
             //Save the updated scores
             string jsonScores = JsonSerializer.Serialize<ScoreData>(data);
             File.WriteAllText(path,jsonScores);
-
-            
-
-
-
-
-
-            
-
         }
 
         public static ScoreData ReadScores()
@@ -84,11 +75,6 @@ namespace NagyAbel.Utils
 
             ScoreData data  =jsonData ?? new ScoreData();
             return data;
-
-
-
-
-
         }
     }
 
@@ -100,6 +86,7 @@ namespace NagyAbel.Utils
             scores = new Dictionary<string, UserScore>();
         }
         public void Print(){
+        //Sort by number of wins
           var sortedDict = scores
             .OrderByDescending(x => x.Value.win)
             .Take(5)
