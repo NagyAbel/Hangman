@@ -4,21 +4,37 @@
     "alma",
     "tehén",
     "kutya",
-    "cica"
+    "cica",
+    "virág",
+    "üveg",
+    "doboz",
+    "lámpa",
+    "hajó"
+
   ],
- "EasyTest":[
-    "ŐŐŐŐŐŐŐŐŐŐŐŐŐŐŐŐŐ",
-    "tehén"
-  ],
+
   "Medium":[
     "oroszlan",
     "mosogep",
-    "hajszarito"
+    "hajszarito",
+    "kerékpár",
+    "napszemüveg",
+    "tolltartó",
+    "száritó",
+    "fülbevaló",
+    "nyaklánc",
+    "karkötő"
   ],
   "Hard":[
-    "mosogatogep"
-  ],
-  "Extra Hard":[
-    "mosogatogep"
+    "virágcserép",
+    "szélcsendes",
+    "viharjelzés",
+    "poháralátét",
+    "hangfalállvány",
+    "szemüvegtok",
+    "szerszámkészlet",
+    "ruhacsipesz",
+    "képernyővédő",
+    "szemeteslapát"
   ]
 }
