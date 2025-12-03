@@ -7,10 +7,8 @@ namespace NagyAbel.Utils
         private int lives;
         public GameState state { get; private set; }
         private string difficulty;
-
         private string word;
         private char[] guess;
-
         public Game()
         {
             difficulty = "";
@@ -18,10 +16,6 @@ namespace NagyAbel.Utils
             word = "";
             guess = new char[0];
         }
-
-
-
-
         public void ChooseDifficulty()
         {
             string[] keys = DataLoader.LoadWords();
@@ -73,10 +67,8 @@ namespace NagyAbel.Utils
         {
             Writer.Writeln("", 0, true);
             string[] figure = DataLoader.GetFigure(lives);
-            foreach (string row in figure)
-            {
-                Writer.Writeln(row, 0);
-            }
+            foreach (string row in figure)Writer.Writeln(row, 0);
+            
             Console.WriteLine();
             Writer.Writeln("Word to guess:\n" + new string(guess));
 
@@ -95,35 +87,21 @@ namespace NagyAbel.Utils
                     found = true;
                 }
             }
-            if (!found)
-            {
-                lives -= 1;
-            }
-
+            if (!found)lives -= 1;
         }
 
         public void CheckForEnd()
         {
-            if (lives == 0)
-            {
+            if (lives == 0){
                 state = GameState.Loose;
                 return;
             }
 
-            if (guess.Count(c => c == Globals.EmptyLetter) == 0)
-            {
+            if (guess.Count(c => c == Globals.EmptyLetter) == 0){
                 state = GameState.Win;
                 return;
             }
         }
-
-
-
-
-
-
-
-
     }
 
     public enum GameState

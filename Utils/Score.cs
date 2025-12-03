@@ -14,11 +14,11 @@ namespace NagyAbel.Utils
                 try
                 {
                     File.Create(path);
-
                 }
-                //Pokemon exception :)
-                catch (Exception)
-                {
+                catch (UnauthorizedAccessException){
+                    Writer.Writeln("[ERROR] Failed to create score file![Permissions Missing]",Globals.fast,true);
+                    Environment.Exit(-1);
+                }catch (Exception){
                     Writer.Writeln("[ERROR] Failed to create score file!",Globals.fast,true);
                     Environment.Exit(-1);
                 }
@@ -27,18 +27,15 @@ namespace NagyAbel.Utils
             //Reading scores and serializing
             string json = File.ReadAllText(path);
             var jsonData = new ScoreData();
-            try
-            {
+            try{
                 jsonData = JsonSerializer.Deserialize<ScoreData>(json);
             }
             catch (Exception){
-                Writer.Writeln("[ERROR] Failed to load score data, loading empty!",Globals.fast,true);
+                jsonData = null;
             }
 
-
             ScoreData data  =jsonData ?? new ScoreData();
-            if (data.scores.ContainsKey(username))
-            {
+            if (data.scores.ContainsKey(username)){
                 data.scores[username].total += 1;
                 if(win)data.scores[username].win +=1;
             }
@@ -58,19 +55,26 @@ namespace NagyAbel.Utils
         {
             string path = Path.Combine("GameData", "scores.json");
 
-            if (!File.Exists(path))
-            {
+            if (!File.Exists(path)){
                 return new ScoreData();
             }
             string json = File.ReadAllText(path);
 
             var jsonData = new ScoreData();
-            try
-            {
+            try{
                 jsonData = JsonSerializer.Deserialize<ScoreData>(json);
             }
-            catch (Exception){
-                Writer.Writeln("[ERROR] Failed to load score data, loading empty!",Globals.fast,true);
+            catch (JsonException){
+                Writer.Writeln("[ERROR] Failed to load score data[Invalid JSON], loading empty!",Globals.fast,true);
+            }
+            catch (NotSupportedException)
+            {
+                Writer.Writeln("[ERROR] Failed to load score data[Not Supported], loading empty!",Globals.fast,true);
+            }
+            catch (ArgumentNullException)
+            {
+                Writer.Writeln("[ERROR] Failed to load score data[Argument Null], loading empty!",Globals.fast,true);
+
             }
 
             ScoreData data  =jsonData ?? new ScoreData();

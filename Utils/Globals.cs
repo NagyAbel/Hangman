@@ -10,7 +10,6 @@ namespace NagyAbel.Utils
         public const int normal = 70;
         public const int fast = 40;
         public const int slow = 100;
-
         //Game variables
         public const int max_lives = 6;
         public const char EmptyLetter = '*';
@@ -25,7 +24,5 @@ namespace NagyAbel.Utils
             else
                 return 3;
         }
-
-
     }
 }

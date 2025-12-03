@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Formats.Asn1;
 using NagyAbel.Utils;
 namespace NagyAbel
 {
@@ -8,11 +9,12 @@ namespace NagyAbel
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Writer.Writeln("Welcome!");
+            string answer = "yes";
 
-            Game:
-            string answer = Reader.ReadString("Would you like to play hangman?[yes/no]:", "yes", "no");
-            if (answer == "yes")
-            {
+            while(answer == "yes"){
+                answer = Reader.ReadString("Would you like to play hangman?[yes/no]:", "yes", "no");
+                if (answer == "no")return;
+
                 Game game = new Game();
                 game.ChooseDifficulty();
                 game.Setup();
@@ -25,12 +27,10 @@ namespace NagyAbel
                 }
 
                 game.DrawState();
-                if (game.state == GameState.Win)
-                {
+                if (game.state == GameState.Win){
                     Writer.Writeln("Congratulations, You Won!");
                 }
-                else
-                {
+                else{
                     Writer.Writeln("Ha,ha  maybe next time!");
                 }
 
@@ -38,9 +38,6 @@ namespace NagyAbel
                 Score.SaveScore(name,game.state == GameState.Win);
                 ScoreData data = Score.ReadScores();
                 data.Print();
-
-                goto Game;
-
 
             }
 
