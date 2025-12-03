@@ -11,5 +11,8 @@
   <ItemGroup>
     <PackageReference Include="Spectre.Console" Version="0.53.0" />
   </ItemGroup>
+  <ItemGroup>
+  <None Include="GameData\**\*" CopyToOutputDirectory="Always" />
+ </ItemGroup>
 
 </Project>
