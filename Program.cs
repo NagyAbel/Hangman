@@ -8,8 +8,9 @@ namespace NagyAbel
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Writer.Writeln("Welcome!");
-            string answer = Reader.ReadString("Would you like to play hangman?[yes/no]:", "yes", "no");
 
+            Game:
+            string answer = Reader.ReadString("Would you like to play hangman?[yes/no]:", "yes", "no");
             if (answer == "yes")
             {
                 Game game = new Game();
@@ -33,18 +34,17 @@ namespace NagyAbel
                     Writer.Writeln("Ha,ha  maybe next time!");
                 }
 
+                string name = Reader.ReadString("Enter your name: ");
+                Score.SaveScore(name,game.state == GameState.Win);
+                ScoreData data = Score.ReadScores();
+                data.Print();
+
+                goto Game;
+
+
             }
 
 
         }
     }
-
-
-    //Console.WriteLine("  +---+");
-    //Console.WriteLine("  |    |");
-    //Console.WriteLine("  O    |");
-    //Console.WriteLine(" /|\\   |");
-    //Console.WriteLine(" / \\   |");
-    //Console.WriteLine("       |");
-    //Console.WriteLine("=========");
 }

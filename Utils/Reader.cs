@@ -24,6 +24,10 @@ namespace NagyAbel.Utils
                     else
                     {
                         response = response.Trim().ToLower();
+                        //All response are valid
+                        if(valid_inputs.Length == 0)return response;
+
+                        //Allow only specific responses
                         foreach (var option in valid_inputs)
                         {
                             if (response == option.ToLower())

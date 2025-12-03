@@ -6,10 +6,12 @@ namespace NagyAbel.Utils
 {
     public static class Globals
     {
+        //Writing output speeds
         public const int normal = 70;
         public const int fast = 40;
         public const int slow = 100;
 
+        //Game variables
         public const int max_lives = 6;
         public const char EmptyLetter = '*';
         public static int lettersToReveal(int length)
@@ -23,6 +25,7 @@ namespace NagyAbel.Utils
             else
                 return 3;
         }
+
 
     }
 }
